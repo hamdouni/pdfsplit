@@ -13,6 +13,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/hamdouni/pdfcpu/pkg/api"
 )
@@ -29,7 +30,8 @@ func main() {
 	}
 
 	file := os.Args[1]
-	err := api.SplitFile(file, ".", 1, nil)
+	dir := filepath.Dir(file)
+	err := api.SplitFile(file, dir, 1, nil)
 	if err != nil {
 		fmt.Printf("Error processing file %v : receive error : %v\n", file, err)
 		waitForKey()
